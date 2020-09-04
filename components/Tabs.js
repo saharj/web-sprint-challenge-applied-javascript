@@ -15,7 +15,6 @@ const axios = require("axios").default;
 axios
   .get("https://lambda-times-api.herokuapp.com/topics")
   .then((res) => {
-    console.log(res);
     if (res.data && res.data.topics) {
       const topicsComp = document.querySelector(".topics");
       res.data.topics.forEach((topic) => {
