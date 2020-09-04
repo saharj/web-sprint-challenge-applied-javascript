@@ -23,13 +23,16 @@ const axios = require("axios").default;
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
 const cardContainer = document.querySelector(".cards-container");
+const selectedTopic = localStorage.getItem("selectedTopic");
 
 axios.get("https://lambda-times-api.herokuapp.com/articles").then((res) => {
   if (res.data && res.data.articles) {
     for (var title in res.data.articles) {
-      res.data.articles[title].forEach((article) => {
-        cardContainer.appendChild(Card(article));
-      });
+      if (selectedTopic && title === selectedTopic) {
+        res.data.articles[title].forEach((article) => {
+          cardContainer.appendChild(Card(article));
+        });
+      }
     }
   }
 });

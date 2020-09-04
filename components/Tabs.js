@@ -30,5 +30,15 @@ function Tab(topic) {
   const tab = document.createElement("div");
   tab.classList.add("tab");
   tab.innerHTML = topic;
+
+  tab.addEventListener("click", (e) => {
+    let topic = e.target.innerHTML;
+    if (e.target.innerHTML === "node.js") {
+      topic = "node";
+    }
+    localStorage.setItem("selectedTopic", topic);
+    window.location.reload(true);
+  });
+
   return tab;
 }
